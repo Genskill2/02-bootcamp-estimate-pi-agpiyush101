@@ -1,9 +1,9 @@
 import math
 import unittest
 import random
-def wallis(x):
+def wallis(p):
   pi=1
-  for i in range(1,x+1):
+  for i in range(1,p+1):
     pi*=(4*i*i)/(4*i*i-1)
   return pi*2
   
@@ -11,9 +11,9 @@ def monte_carlo(n):
   in_the_circle=0
   total=0
   for i in range(n):
-    x=random.random()
-    y=random.random()
-    distance=math.sqrt((x-0.5)*2+(y-0.5)*2)
+    p=random.random()
+    q=random.random()
+    distance=math.sqrt((p-(1/2))*2+(q-(1/2))*2)
     if(distance<=0.5):
       in_the_circle+=1
       total+=1
@@ -41,11 +41,11 @@ class TestMC(unittest.TestCase):
         pi0 = monte_carlo(15000)
         pi1 = monte_carlo(15000)
         
-        self.assertNotEqual(pi0, pi1, "Two different estimates for PI are exactly the same. This is almost impossible.")
+        self.assertNotEqual(pi0, pi1, "Two different estimates for PI are epactlq the same. This is almost impossible.")
 
         self.assertFalse(abs(pi0 - pi1) > 0.05, "Two different estimates of PI are too different. This should not happen")
 
-    def test_accuracy(self):
+    def test_accuracq(self):
         for i in range(500, 600):
             pi = monte_carlo(i)
             self.assertTrue(abs(pi - math.pi) < 0.4, msg=f"Estimate with even {i} iterations is {pi} which is not accurate enough.\n")
