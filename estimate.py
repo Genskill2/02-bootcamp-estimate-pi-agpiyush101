@@ -13,7 +13,7 @@ def monte_carlo(n):
   for i in range(n):
     p=random.random()
     q=random.random()
-    distance=math.sqrt((p-(1/2))*2+(q-(1/2))*2)
+    distance=math.sqrt((p-(1/2))**2+(q-(1/2))**2)
     if(distance<=0.5):
       in_the_circle+=1
       total+=1
@@ -51,5 +51,5 @@ class TestMC(unittest.TestCase):
             self.assertTrue(abs(pi - math.pi) < 0.4, msg=f"Estimate with even {i} iterations is {pi} which is not accurate enough.\n")
         
     
-
+if _name_ == "_main_":
     unittest.main()
