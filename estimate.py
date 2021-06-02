@@ -1,5 +1,28 @@
 import math
 import unittest
+import random
+def wallis(x):
+  pi=1
+  for i in range(1,x+1):
+    pi*=(4*i*i)/(4*i*i-1)
+  return pi*2
+  
+def monte_carlo(n):
+  in_the_circle=0
+  total=0
+  for i in range(n):
+    x=random.random()
+    y=random.random()
+    distance=math.sqrt((x-0.5)*2+(y-0.5)*2)
+    if(distance<=0.5):
+      in_the_circle+=1
+      total+=1
+    else:
+      total+=1
+
+
+  pi=4*(in_the_circle/total)
+  return pi
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
@@ -28,5 +51,5 @@ class TestMC(unittest.TestCase):
             self.assertTrue(abs(pi - math.pi) < 0.4, msg=f"Estimate with even {i} iterations is {pi} which is not accurate enough.\n")
         
     
-if __name__ == "__main__":
+if _name_ == "_main_":
     unittest.main()
